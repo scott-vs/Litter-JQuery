@@ -58,7 +58,6 @@ class Litt {
 	public function printLitt(){
 		$name = $this->user->getUserName();
 		$picture = $this->user->getImageUrl();
-		$onClick = "onclick='changeUserPane(\"".$this->user->getID()."\");'";
 		
 		if ($this->reply != "0"){
 			$replyText = $this->getReplyText();
@@ -69,9 +68,9 @@ class Litt {
 		$text = $this->fancyText();
 		
 		$s = "	<div class='litt' $title >
-					<img src='$picture' $onClick />
+					<img src='$picture'  uid='".$this->user->getID()."'  />
 					<div class='litt_top'>
-						<div class='litt_username' $onClick >
+						<div class='litt_username' uid='".$this->user->getID()."'  >
 							$name:
 						</div>
 					</div>
@@ -79,7 +78,7 @@ class Litt {
 					 $text
 					</div>
 					<div class='litt_reply'>
-						<a href='javascript:void(0)' onclick='replyTo(\"$name\", \"l$this->litt_id\");' >reply</a>
+						<a href='javascript:void(0)' replyTo = '$name' littid ='l".$this->litt_id."'>reply</a>
 					</div>
 				</div>
 			";

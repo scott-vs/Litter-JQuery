@@ -25,7 +25,7 @@ $count = 0;
 while ($row = mysql_fetch_array($result)){
 	$u = User::importFromDB($row);
 	
-	echo("<img src='".$u->getImageUrl()."' onclick='changeUserPane(\"".$u->getID()."\");' />");
+	echo("<img src='".$u->getImageUrl()."' uid='".$u->getID()."' />");
 	$count++;
 	if ($count % 4 == 0)
 		echo("<br/>");

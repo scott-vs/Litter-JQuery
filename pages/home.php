@@ -36,7 +36,6 @@
 		    <span id="tiny_text">140 characters left.</span>
 		    <input id="new_litt" type="button" value="Litt it!" />
 	    </div>
-	    <div id="you_got_litts" onclick="loadOnDeck()"> You've got new litts! Click here to load.</div>
 	    <div id="litt_space">
 	    <?php 
 	    		

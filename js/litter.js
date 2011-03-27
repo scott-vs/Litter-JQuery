@@ -7,10 +7,7 @@
  */
 $(document).ready(function(){
 	
-
-	
 	// Setup Litter on Welcome page.
-	
 	if ($('#setup_litter').length != 0){
 		$('#setup_litter').html("Setting up your Litter demo...");
 		
@@ -24,6 +21,7 @@ $(document).ready(function(){
 	} else 
 		setInterval (getNewLitts, 10000);
 	
+	// AJAX call to get new litts.
 	function getNewLitts(){
 		var top = $("#top_litt").html();
 		
@@ -39,6 +37,7 @@ $(document).ready(function(){
 		$.ajax({url:"getLitts.php?before="+top,success:cb, dataType:"json"});
 	}
 	
+	// Load the next 10 Litts at bottom of screen.
 	$("#loadNext10").click(function(){
 		var bottom = $("#bottom_litt").html();
 		
@@ -54,7 +53,7 @@ $(document).ready(function(){
 		$.ajax({url:"getLitts.php?after="+bottom,success:cb, dataType:"json"});
 	});
 	
-	
+	// POST a new litt to the server
 	$('#new_litt').click(function(){
 		var txt = $("#txt_box").val();
 		var replyTo = $("#reply_to").html();
@@ -77,18 +76,24 @@ $(document).ready(function(){
 		}
 		
 		$.ajax({type:"POST",url:"newLitt.php",data:params,success:cb, dataType:"json"});
-		
 	});
 	
-	function changeUserPane(userId){
-		var cb = function(response){
-			if (response.status == "ok"){
-				$("#user_pane").html(response.text);
+	// When user clicks picture, show that user's info.
+	var userPane = function(){
+		var userId = $(this).attr('uid');
+		if (userId){
+			var cb = function(response){
+				if (response.status == "ok"){
+					$("#user_pane").html(response.text);
+				}
 			}
+			$.ajax({url:"getUserPane.php?id="+userId,success:cb, dataType:"json"});
 		}
-		$.ajax({url:"getUserPane.php?id="+userId,success:cb, dataType:"json"})
-	}
+	};
+	$('#user_list').delegate('img', 'click', userPane);
+	$('#litt_space').delegate('img,div', 'click', userPane);
 	
+	// Update the "140 characters left" message.
 	$("#txt_box").keyup(updateCharLimit);
 	function updateCharLimit(){
 		var txt = document.getElementById("txt_box");
@@ -111,55 +116,20 @@ $(document).ready(function(){
 		}
 	}
 	
-	function replyTo(username, id){
-		var txt = document.getElementById("txt_box");
-		var replySpace = document.getElementById("reply_to");
-		replySpace.innerHTML = id;
-		txt.value="@"+ username + " " + txt.value;
-		updateCharLimit();
-	}
-	
-	
-	
-	
-	
-
-	// Animated loading message.
-	var loading = {
-		dom:null,
-		phase:1,
-		go:1,
-		message:"Loading",
-		timer:null,
-		tick:function(){
-			if (loading.go){
-				switch(loading.phase){
-					case 1:
-						loading.phase = 2;
-						loading.dom.innerHTML = loading.message;
-						break;
-					case 2:
-						loading.phase = 3;
-						loading.dom.innerHTML = loading.message + " .";
-						break;
-					case 3:
-						loading.phase = 4;
-						loading.dom.innerHTML = loading.message + " ..";
-						break;
-					case 4:
-						loading.phase = 1;
-						loading.dom.innerHTML = loading.message + " ...";
-						break;
-				}
-				
-			} else 
-				clearInterval ( loading.timer );
-		},
-		init:function(domObj, message){
-			loading.dom = document.getElementById(domObj);
-			loading.dom.innerHTML = message;
-			loading.message = message;
-			loading.timer = setInterval (loading.tick, 500);
+	// Reply to Litt.
+	$('#litt_space').delegate('a', 'click', function(){
+		var id = $(this).attr('littid');
+		if (id){
+			var replyTo = $(this).attr('replyto');
+			var txt = document.getElementById("txt_box");
+			$('#reply_to').html(id);
+			$('#txt_box').val("@"+ replyTo + " " + $('#txt_box').val());
+			updateCharLimit();
 		}
-	}
+	});
+	
+	// Logout confirmation.
+	$('#signMeOff').click(function(){
+		 return confirm('Are you sure you want to sign out? If you sign out, your demo will over, your data will be deleted, and you will return to the welcome page.');
+	});
 });
