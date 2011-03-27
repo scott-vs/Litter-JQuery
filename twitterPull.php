@@ -20,15 +20,30 @@ if (!$sql){
 	mysql_select_db("litter", $sql);
 }
 
+$multiCurl = curl_multi_init();
 foreach ($USER_LIST as $u){
 	$feedUrl=("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=".$u);
-	$ch = curl_init();	
+	$ch = "ch".$u;
+	$$ch = curl_init();	
 	
-	curl_setopt($ch, CURLOPT_URL, $feedUrl);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_TIMEOUT, 8);
-			
-	$feed_content = curl_exec($ch);
+	curl_setopt($$ch, CURLOPT_URL, $feedUrl);
+	curl_setopt($$ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($$ch, CURLOPT_TIMEOUT, 8);
+	
+	curl_multi_add_handle($multiCurl,$$ch);
+}
+
+$running=null;
+
+do {
+    usleep(10000);
+    curl_multi_exec($multiCurl,$running);
+} while ($running > 0);
+
+foreach ($USER_LIST as $u){
+	$ch = "ch".$u;
+	$feed_content = curl_multi_getcontent($$ch);
+	curl_multi_remove_handle($multiCurl, $$ch);
 	
 	$tweets = json_decode($feed_content, TRUE);
 	
@@ -48,8 +63,10 @@ foreach ($USER_LIST as $u){
 		$litt->setUser($user);
 		$litt->saveToMasterDB($sql);
 	}
-
 }
+
+curl_multi_close($multiCurl);
+
 
 
 ?>
