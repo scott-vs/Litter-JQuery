@@ -18,11 +18,7 @@
 	<p>In this demo, you will be playing the role of Scott VonSchilling's curious tabby cat <strong>Tiger</strong>, aka Wild_Tiger. <strong>Litt out</strong> anything that's on your mind. <strong>Reply</strong> to other cats' litts. Change your <strong>settings</strong>. And stick around to see if your friend <strong>Mimi</strong> replies to any of your litts.</p>
 	<p>This demo is set up from scratch specifically for you, so <strong>play around</strong> with it as much as you like. No one else will be able to see what you write, and everything will be <strong>automatically deleted</strong> off my database after two hours, or after you sign off of Litter.</p>
 	<p>And of course, feel free to <strong>download</strong> the complete source code <a href="<?php echo($SRC_URL);?>">here</a>.</p>
-	<div id="stats"></div>
+	<div id="setup_litter">JavaScript not enabled</div>
 </div>
  
 <?php require 'pages/footer.php'; ?>
-
-<script type="text/javascript">
-	setupLitter();
-</script>

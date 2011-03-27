@@ -32,9 +32,9 @@
 	    <div id="the_scoop">
 		    <h2>What's the scoop?</h2>
 		    <div id="reply_to" class="hidden_info"></div>
-		    <textarea id="txt_box" rows="2" cols="20" onkeyup="updateCharLimit();" ></textarea> <br/>
+		    <textarea id="txt_box" rows="2" cols="20" ></textarea> <br/>
 		    <span id="tiny_text">140 characters left.</span>
-		    <input id="new_litt" type="button" onclick="sendNewLitt();" value="Litt it!" />
+		    <input id="new_litt" type="button" value="Litt it!" />
 	    </div>
 	    <div id="you_got_litts" onclick="loadOnDeck()"> You've got new litts! Click here to load.</div>
 	    <div id="litt_space">
@@ -60,13 +60,8 @@
 			echo("<div id='bottom_litt' class='hidden_info'>$littID</div>");
 	    ?>
 	    </div>
-	    <a href="javascript:void(0)" onclick = "getOldLitts()">Load Next 10</a>
+	    <a id="loadNext10" href="javascript:void(0)">Load Next 10</a>
    	</div>
    	<div id="on_deck" class="hidden_info"></div>
    	
 <?php require 'pages/footer.php'; ?>
-
-<script type="text/javascript">
-	setInterval (getNewLitts, 10000);
-
-</script>
