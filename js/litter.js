@@ -67,7 +67,7 @@ $(document).ready(function(){
 				  $("#txt_box").val("");
 				  $("#reply_to").html();
 				  $("#top_litt").html(response.id.substr(1));
-				  //updateCharLimit();
+				  updateCharLimit();
 				  var newEl = $('<div></div>').html(response.text).hide();
 				  $('#litt_space').prepend(newEl);
 			      newEl.slideDown("slow");
