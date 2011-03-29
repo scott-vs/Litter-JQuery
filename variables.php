@@ -16,7 +16,7 @@
 	$DB_PASSWORD = 'root';
 	
 	// Download link for code source.
-	$SRC_URL = '';
+	$SRC_URL = 'https://github.com/scott-vs/Litter-JQuery';
 	
 	// Inital set of users to be imported from Twitter.
 	$USER_LIST = array(	"sockington",
