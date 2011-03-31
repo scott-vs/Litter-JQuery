@@ -156,7 +156,7 @@ body {
 }
 
 #user_list img{
-	margin:5px;	
+	margin:4px 4px 0px 4px;
 	width: 48px;
 	height: 48px;
 	cursor:pointer;

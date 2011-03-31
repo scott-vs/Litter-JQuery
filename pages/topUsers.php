@@ -25,7 +25,7 @@ $count = 0;
 while ($row = mysql_fetch_array($result)){
 	$u = User::importFromDB($row);
 	
-	echo("<img src='".$u->getImageUrl()."' uid='".$u->getID()."' />");
+	echo("<span class='user_picture'><img src='".$u->getImageUrl()."' alt='someones picture'/><input type='hidden' value='".$u->getID()."' /></span>");
 	$count++;
 	if ($count % 4 == 0)
 		echo("<br/>");

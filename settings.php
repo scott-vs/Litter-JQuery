@@ -49,7 +49,7 @@
 <div id="settings">
     <h2>Settings</h2>
 	<form action="settings.php" method="post">
-		Real Name: <input type="text" name="rname" value="<?php echo($me->getRealName());?>" /><br />
+		<p>Real Name: <input type="text" name="rname" value="<?php echo($me->getRealName());?>" /><br />
 		Bio: <input type="text" name="bio" value="<?php echo($me->getBio());?>" /><br />
 		Location: <input type="text" name="location" value="<?php echo($me->getLocation());?>" /><br />
 		Favorite Toy: <input type="text" name="toy" value="<?php echo($me->getToy());?>" /><br />
@@ -57,7 +57,7 @@
 		Website: <input type="text" name="website" value="<?php echo($me->getWebsite());?>" /><br />
 		<input type="hidden" name="formSubmited" value="true" />
 		<button type="submit" >save</button>
-		<button type="button" onclick="window.location.href='./'">cancel</button>
+		<button type="button" onclick="window.location.href='./'">cancel</button></p>
 	</form>
 </div>
  

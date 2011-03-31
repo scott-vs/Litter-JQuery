@@ -142,7 +142,7 @@ class User{
 				<div id="user_bio">
 		      		 '.$this->bio.'<br />
 				</div>
-				<img src="'.$this->getLargeImageUrl().'" />
+				<img src="'.$this->getLargeImageUrl().'" alt="user profile picture" />
 			</div>
 			<div id="user_deets">
 		';

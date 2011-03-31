@@ -80,7 +80,7 @@ $(document).ready(function(){
 	
 	// When user clicks picture, show that user's info.
 	var userPane = function(){
-		var userId = $(this).attr('uid');
+		var userId = $(this).find('input').val();
 		if (userId){
 			var cb = function(response){
 				if (response.status == "ok"){
@@ -90,8 +90,8 @@ $(document).ready(function(){
 			$.ajax({url:"getUserPane.php?id="+userId,success:cb, dataType:"json"});
 		}
 	};
-	$('#user_list').delegate('img', 'click', userPane);
-	$('#litt_space').delegate('img,div', 'click', userPane);
+	$('#user_list').delegate('span', 'click', userPane);
+	$('#litt_space').delegate('span,.litt_username', 'click', userPane);
 	
 	// Update the "140 characters left" message.
 	$("#txt_box").keyup(updateCharLimit);
@@ -117,12 +117,13 @@ $(document).ready(function(){
 	}
 	
 	// Reply to Litt.
-	$('#litt_space').delegate('a', 'click', function(){
-		var id = $(this).attr('littid');
+	$('#litt_space').delegate('.litt_reply', 'click', function(){
+		var id = $(this).find('input').val();
 		if (id){
-			var replyTo = $(this).attr('replyto');
-			var txt = document.getElementById("txt_box");
-			$('#reply_to').html(id);
+			var s = id.split(",");
+			id = s[0];
+			var replyTo = s[1];
+			$('#reply_to').html('l'+id);
 			$('#txt_box').val("@"+ replyTo + " " + $('#txt_box').val());
 			updateCharLimit();
 		}
