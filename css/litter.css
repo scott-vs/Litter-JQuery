@@ -21,6 +21,7 @@ body {
 	font-size:80%;
 	color: #666;
 	text-align:center;
+	clear:both;
 }
 
 .hidden_info{
@@ -83,40 +84,19 @@ body {
 	padding: 5px;
 }
 
-#new_litt{
-	float:right;
-}
-
-#the_scoop{
-	padding: 10px;	
-}
-
-#txt_box {
-	width: 450px;
-	margin: 10px 0px 10px 20px;
-	padding: 5px;
-	height: 50px;
-	vertical-align:top;
-	font-size:85%;
-}
-
-#tiny_text{
-   font-size:80%;	
-   margin-left: 20px;
+.clear {
+	clear:both;
 }
 
 #side_bar {
 	width: 250px;
-	right: 0;
-	top: 170px;
-	position:absolute;
+	float: right;
 }
 
 #user_pane {
 	height: 300px;
 	padding:5px;
 	background-color: #FBFFE7;
-	
 }
 
 #user_pane img{
@@ -126,11 +106,10 @@ body {
 
 #user_bio {
 	font-size:70%;
-	right:0px;
-	position:absolute;
 	padding: 5px 5px 5px 5px;
 	width: 150px;
 	vertical-align: middle;
+	float: right;
 }
 
 #user_tag{
@@ -161,6 +140,32 @@ body {
 	height: 48px;
 	cursor:pointer;
 }
+
+#new_litt{
+	float:right;
+}
+
+#the_scoop{
+	padding: 10px;	
+}
+
+#txt_box {
+	width: 450px;
+	margin: 10px 0px 10px 20px;
+	padding: 5px;
+	height: 50px;
+	vertical-align:top;
+	font-size:85%;
+}
+
+#tiny_text{
+   font-size:80%;	
+   margin-left: 20px;
+}
+
+
+
+
 
 
 .litt {
@@ -208,4 +213,4 @@ body {
 	font-weight:bold;
 	cursor: pointer;
 	visibility:hidden;
-}
+} */

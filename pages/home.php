@@ -20,6 +20,7 @@
 ?>
 	
 	<?php require 'pages/id_tag.php'; ?>
+	<div class="clear" />
 	<div id="side_bar">
     	<div id="user_pane"> 
     		<?php echo($me->printUserPane()); ?>
