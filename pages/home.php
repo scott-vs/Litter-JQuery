@@ -12,7 +12,7 @@
 	require_once 'variables.php';
 	require_once 'classes/Litt.php';
 	require 'demoScript.php';
-    $title = "Litter Home Page";
+    $title = 'Litter Home Page';
 	require 'pages/header.php';
 	
 	$sql = openSQL();
@@ -51,13 +51,13 @@
 	   			if ($isFirst){
 	   				$littID = $l->getID();
 	   				$topID = $littID;
-	   				echo("<div id='top_litt' class='hidden_info' >$littID</div>");
+	   				echo('<div id="top_litt" class="hidden_info" >'.$littID.'</div>');
 	   				$isFirst = FALSE;
 	   			}
 				echo($l->printLitt());
 			}
 			$littID = $l->getID();
-			echo("<div id='bottom_litt' class='hidden_info'>$littID</div>");
+			echo('<div id="bottom_litt" class="hidden_info">'.$littID.'</div>');
 	    ?>
 	    </div>
 	    <a id="loadNext10" href="javascript:void(0)">Load Next 10</a>

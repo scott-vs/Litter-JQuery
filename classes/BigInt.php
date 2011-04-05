@@ -32,14 +32,14 @@ class BigInt{
 			$m = substr($m, 1);
 		}
 		$m += $n;
-		$this->array[$l] = "";
+		$this->array[$l] = '';
 		for ($i = 0; $i < $leadingZeros; $i++)
-			$this->array[$l] .= "0";
+			$this->array[$l] .= '0';
 		$this->array[$l] .= $m;
 	}
 	
 	public function getNum(){
-		$s = "";
+		$s = '';
 		for ($i = 0; $i < count($this->array); $i++){
 			$s .= $this->array[$i];
 		}

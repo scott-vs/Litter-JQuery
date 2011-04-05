@@ -30,28 +30,28 @@ class Litt {
 		return $this->litt_id->__toString();
 	}
 	
-	public function saveToMasterDB($sql, $sub = "master"){
+	public function saveToMasterDB($sql, $sub = 'master'){
 		$list = array (
-						"litt_id", $this->litt_id,
-						"text",sqlSafe($this->text),
-						"user_id",$this->user_id,
-						"reply",$this->reply
+						'litt_id', $this->litt_id,
+						'text',sqlSafe($this->text),
+						'user_id',$this->user_id,
+						'reply',$this->reply
 					  );
-		$names = "";
-		$values = "";
+		$names = '';
+		$values = '';
 		$isFirst = true;
 		for ($i = 0; $i < count($list); $i += 2){
 			if ($isFirst)
 				$isFirst = false;
 			else {
-				$names .= ", ";
-				$values .= ", ";
+				$names .= ', ';
+				$values .= ', ';
 			} 
 			$names .= $list[$i];
-			$values .= "'".$list[$i + 1]."'";
+			$values .= '\''.$list[$i + 1].'\'';
 		}
 		
-		$insert = "INSERT INTO litt_$sub (".$names.") VALUES (".$values.")";
+		$insert = 'INSERT INTO litt_$sub ('.$names.') VALUES ('.$values.')';
 		mysql_query($insert);
 	}
 	
@@ -59,42 +59,42 @@ class Litt {
 		$name = $this->user->getUserName();
 		$picture = $this->user->getImageUrl();
 		
-		if ($this->reply != "0"){
+		if ($this->reply != '0'){
 			$replyText = $this->getReplyText();
-			$title = "title='$replyText'";
+			$title = 'title="$replyText"';
 		}
 		else
-			$title = "";
+			$title = '';
 		$text = $this->fancyText();
 		
-		$s = "	<div class='litt' $title >
+		$s = '	<div class="litt" '.$title.' >
 					<span>
-						<img src='$picture'  alt='$name' />
-						<input type='hidden' value='".$this->user->getID()."' />
+						<img src="'.$picture.'"  alt="'.$name.'" />
+						<input type="hidden" value="'.$this->user->getID().'" />
 					</span>
-					<div class='litt_top'>
-						<span class='litt_username' ><input type='hidden' value='".$this->user->getID()."' />
-								$name:
+					<div class="litt_top">
+						<span class="litt_username" ><input type="hidden" value="'.$this->user->getID().'" />
+								'.$name.':
 						</span>
 					</div>
-					<div class='litt_text'>
-					 $text
+					<div class="litt_text">
+					 '.$text.'
 					</div>
-					<div class='litt_reply'>
-						 <a href='javascript:void(0)'>reply</a> 
-						 <input type='hidden' value='".$this->litt_id.",".$name."' />
+					<div class="litt_reply">
+						 <a href="javascript:void(0)">reply</a> 
+						 <input type="hidden" value="'.$this->litt_id.','.$name.'" />
 					</div>
 				</div>
-			";
+			';
 		return $s;
 		
 	}
 	
 	private function fancyText(){
-		$s = preg_replace("/(http:\/\/[^\s]+)/", "<a href=\"$1\">$1</a>", $this->text);
-		$s = preg_replace("/(@[^\s]+)/", "<span style='color:darkred;'>$1</span>", $s);
-		$s = preg_replace("/(#[^\s]+)/", "<span style='color:green'>$1</span>", $s);
-		$s = str_replace("&","&amp;", $s);
+		$s = preg_replace('/(http:\/\/[^\s]+)/', '<a href="$1">$1</a>', $this->text);
+		$s = preg_replace('/(@[^\s]+)/', '<span style="color:darkred;">$1</span>', $s);
+		$s = preg_replace('/(#[^\s]+)/', '<span style="color:green">$1</span>', $s);
+		$s = str_replace('&','&amp;', $s);
 		return $s;
 	}
 	
